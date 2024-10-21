@@ -23,15 +23,6 @@ export async function GET(req: Request, { params }: { params: { userId: string }
       }
     })
 
-    const ratings = await prisma.rating.findMany({
-      where: {
-        user_id: userId,
-      },
-      select: {
-        book_id: true,
-      },
-    });
-
     const booksEvaluated = await prisma.rating.findMany({
       where: {
         user_id: userId,

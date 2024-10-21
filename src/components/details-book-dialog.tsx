@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 
 // Icons
-import { Bookmark, BookOpen, X } from "lucide-react";
+import { Bookmark, BookOpen } from "lucide-react";
 
 // Components
 import { Button } from "./ui/button";
