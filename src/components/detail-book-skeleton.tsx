@@ -5,7 +5,7 @@ import { Skeleton } from "./ui/skeleton";
 
 export function DetailsBookSkeleton() {
   return (
-    <div className="w-full mt-14 px-6 pt-5 pb-8 bg-gray-700 rounded-xl">
+    <div className="w-full px-6 pt-5 pb-8 bg-gray-700 rounded-xl">
       <div className="flex flex-wrap gap-6">
         <Skeleton className="w-full max-w-[172px] h-[242px]" />
        

@@ -1,9 +1,9 @@
 
 // Components
-import { TitleSection } from "./components/title-section";
 import { RatingsRecent } from "./components/ratings-recent";
 import { BooksPopular } from "./components/books-popular";
 import { LastReatingBook } from "./components/most-recent-book-rating-card";
+import { TitleSection } from "./components/title-section";
 
 export const metadata = {
   title: 'Dashboard | BookWise',

@@ -11,8 +11,7 @@ import { usePathname } from "next/navigation";
 import LogoImg from "@/assets/images/logo.png"
 
 // Icons
-import { User } from "lucide-react";
-import { Binoculars, ChartLineUp, SignIn, List, X, SignOut } from  "@phosphor-icons/react";
+import { Binoculars, ChartLine, LogIn, LogOut, Menu, User, X } from "lucide-react";
 
 // Components
 import { Separator } from "./ui/separator";
@@ -30,7 +29,7 @@ export function Sidebar() {
   ]
 
   const appItems = [
-    { name: 'Início', icon: ChartLineUp, linkActive: '/dashboard', href: '/dashboard' },
+    { name: 'Início', icon: ChartLine, linkActive: '/dashboard', href: '/dashboard' },
     { name: 'Explorar', icon: Binoculars, linkActive: '/explore', href: '/dashboard/explore' },
   ]
 
@@ -44,7 +43,7 @@ export function Sidebar() {
         className="fixed top-4 left-4 z-50 md:hidden"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
-        {sidebarOpen ? <X className="h-6 w-6 fixed top-5 left-5" /> : <List className="h-8 w-8" />}
+        {sidebarOpen ? <X className="h-6 w-6 fixed top-5 left-5" /> : <Menu className="h-8 w-8" />}
       </div>
 
       <aside
@@ -82,7 +81,7 @@ export function Sidebar() {
                 <div className="flex items-center gap-3">
                   <button onClick={() => setModalSignInOpen(true)} className="flex items-center text-md gap-3 text-gray-100 font-bold">
                     Fazer login
-                    <SignIn size={20} className="text-green-100" />
+                    <LogIn size={20} className="text-green-100" />
                   </button>
                 </div>
               ): (
@@ -91,7 +90,7 @@ export function Sidebar() {
                     {user.image && <Image src={user.image} alt="Foto de perfil" width={35} height={35} className="w-[95%] h-[95%] bg-slate-200 rounded-full" />}
                   </div>
                   <span className="text-sm">Eronar Alves</span>
-                  <SignOut onClick={() => signOut({ callbackUrl: '/sign-in' })} size={20} className="text-red-400 cursor-pointer" />
+                  <LogOut onClick={() => signOut({ callbackUrl: '/sign-in' })} size={20} className="text-red-400 cursor-pointer" />
                 </div>
               )}
             </div>

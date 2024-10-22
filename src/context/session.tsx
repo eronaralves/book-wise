@@ -33,13 +33,13 @@ export function ContextProvider({ children }: ContextProviderProps) {
         <DialogContent className="text-center bg-gray-700">
           <h2 className="font-bold text-sm mb-4">Faça login com:</h2>
           <ButtonSignIn title="Entrar com Google" onClick={() => signIn('google', {
-            callbackUrl: window.location.href
+            callbackUrl: '/dashboard'
           })} >
             <Icon icon="flat-color-icons:google" fontSize={32}  />
           </ButtonSignIn>
 
           <ButtonSignIn title="Entrar com GitHub" onClick={() => signIn('github', {
-            callbackUrl: window.location.href,
+            callbackUrl: '/dashboard'
           })}>
             <Icon icon="akar-icons:github-fill" fontSize={32}  />
           </ButtonSignIn>

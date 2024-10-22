@@ -1,13 +1,9 @@
 
 // Components
-import { TitleSection } from "./components/title-section";
 import { Categorys } from "./components/categorys";
 import { Books } from "./components/books";
 import { SearchInput } from "./components/seach";
-
-export const metadata = {
-  title: 'Explorar | BookWise',
-}
+import { TitleSection } from "../components/title-section";
 
 interface IExplore {
   searchParams: {
@@ -16,14 +12,13 @@ interface IExplore {
   }
 }
 
-export default async function Explore({ searchParams: { category, search } }: IExplore) {
+export default function Explore({ searchParams: { category, search } }: IExplore) {
 
   return (
     <div className="w-full h-full flex flex-col overflow-auto mt-0 sm:mt-10 lg:mt-0 px-3 sm:px-6">
       <div className="w-full max-w-[1124px] flex flex-col h-full mx-auto mt-14">
         <div className="flex gap-6 items-center justify-between">
           <TitleSection />
-
           <SearchInput />
         </div>
 

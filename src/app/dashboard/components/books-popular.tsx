@@ -19,8 +19,6 @@ export function BooksPopular() {
     staleTime: 0,
   }) 
 
-  console.log(popularBooks, 'AAA')
-
   return (
     <div className="w-full max-w-[350px] hidden lg:flex flex-col justify-start">
       <div className="w-full flex items-center justify-between mb-4">

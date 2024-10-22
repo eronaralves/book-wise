@@ -36,9 +36,11 @@ export function LastReatingBook() {
         </Button>
       </div>
 
-      <div className="w-full flex flex-col gap-4">
-        <MostRecentBookRatingCard created_at={lastReatingBook.created_at} book={lastReatingBook.book} />
-      </div>
+      {lastReatingBook && (
+        <div className="w-full flex flex-col gap-4">
+          <MostRecentBookRatingCard created_at={lastReatingBook.created_at} book={lastReatingBook.book} />
+        </div>
+      )}
     </div>
   )
 }

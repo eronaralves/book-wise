@@ -1,4 +1,5 @@
 'use client'
+
 import { useQuery } from "@tanstack/react-query";
 
 // Components
@@ -10,10 +11,14 @@ import { getCategorys } from "@/http/get-categorys";
 
 
 export function Categorys() {
-  const { data: categorys } = useQuery({
+  const { data: categorys, isFetching } = useQuery({
     queryKey: ['categorys'],
     queryFn: getCategorys
   })
+
+  if(!categorys && !isFetching) {
+    return null
+  }
 
   return (
     <div>

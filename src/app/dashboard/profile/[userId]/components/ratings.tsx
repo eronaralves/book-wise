@@ -12,7 +12,7 @@ import { RatingUserCard } from "./rating-user-card";
 // Api
 import { getRatingPerUser } from "@/http/get-ratings-per-user";
 import { useState, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 interface IRatings {
   bookSearch: string;
@@ -23,6 +23,8 @@ export function Ratings({ bookSearch, userId }: IRatings) {
   const [searchBook, setSearchBook] = useState('')
 
   const navigate = useRouter()
+  const searchparams = useSearchParams()
+  const pathname = usePathname()
 
   const { data: ratings, isLoading } = useQuery({
     queryKey: ['ratings-per-user', userId, bookSearch],
@@ -30,17 +32,18 @@ export function Ratings({ bookSearch, userId }: IRatings) {
   })
 
   function handleFilter(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    const url = new URL(window.location.href);
+    e.preventDefault();
 
-    if(searchBook !== '') {
-      url.searchParams.set('bookSearch', searchBook);
+    const searchParams = new URLSearchParams(searchparams.toString());
 
-      return navigate.push(url.toString());
+    if (searchBook !== '') {
+      searchParams.set('bookSearch', searchBook);
+    } else {
+      searchParams.delete('bookSearch');
     }
 
-    url.searchParams.delete('bookSearch');
-    navigate.push(url.toString())
+    const newUrl = `${pathname}?${searchParams.toString()}`;
+    navigate.push(newUrl);
   }
 
   return (

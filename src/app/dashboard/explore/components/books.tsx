@@ -15,11 +15,14 @@ interface IBooks {
 }
 
 export function Books({ category, search }: IBooks) {
-  const { data: books, isLoading } = useQuery({
+  const { data: books, isLoading, isFetching } = useQuery({
     queryKey: ['books', category ? category : undefined, search === "undefined" ? '' : search],
     queryFn: async () => await getBooks(category, search)
   })
 
+  if(!books && !isFetching) {
+    return null
+  }
 
   return (
     <div>

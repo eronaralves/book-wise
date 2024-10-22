@@ -1,6 +1,6 @@
 'use client'
 
-import { Binoculars } from "@phosphor-icons/react";
+import { Binoculars } from "lucide-react";
 
 export function TitleSection() {
   return (

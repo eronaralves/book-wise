@@ -13,7 +13,7 @@ import { RatingStars } from "./rating-stars";
 import { Textarea } from "./ui/textarea";
 
 // Icons
-import { Check, X } from "@phosphor-icons/react";
+import { X, Check } from "lucide-react"
 
 // Hooks
 import { useContextSession } from "@/hooks/useContextSession";
