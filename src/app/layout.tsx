@@ -1,9 +1,6 @@
-'use client';
-
 import "./globals.css";
 import { Nunito } from "next/font/google";
 import { Toaster } from "sonner";
-
 import { QueryClientProvider } from "@tanstack/react-query";
 import { SessionProvider } from "next-auth/react";
 import { queryClient } from "@/libs/react-query";
@@ -19,7 +16,7 @@ export default function RootLayout({
   session
 }: Readonly<{
   children: React.ReactNode;
-  session: Session
+  session?: Session; // Torna a session opcional
 }>) {
   return (
     <html lang="pt-br">
