@@ -3,7 +3,7 @@
 import { Categorys } from "./components/categorys";
 import { Books } from "./components/books";
 import { SearchInput } from "./components/seach";
-import { TitleSection } from "../components/title-section";
+import { TitleSection } from "./components/title-section";
 
 interface IExplore {
   searchParams: {
