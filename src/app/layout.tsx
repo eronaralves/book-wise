@@ -3,7 +3,6 @@
 import "./globals.css";
 import { Nunito } from "next/font/google";
 import { Toaster } from "sonner";
-import type { ReactNode } from "react";
 
 import { QueryClientProvider } from "@tanstack/react-query";
 import { SessionProvider } from "next-auth/react";
@@ -15,12 +14,13 @@ const nunito = Nunito({
   weight: ['400', '500', '700'],
 });
 
-type RootLayoutProps = {
-  children: ReactNode;
-  session: Session | null
-};
-
-export default function RootLayout({ children, session }: RootLayoutProps) {
+export default function RootLayout({
+  children,
+  session
+}: Readonly<{
+  children: React.ReactNode;
+  session: Session
+}>) {
   return (
     <html lang="pt-br">
       <head>
