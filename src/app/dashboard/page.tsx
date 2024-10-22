@@ -11,6 +11,7 @@ export const metadata = {
 
 export default async function Dashboard() {
 
+  console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
   return (
     <div className="w-full h-full overflow-auto mt-10 lg:mt-0 px-3 sm:px-6">
       <div className="h-full w-full flex flex-col max-w-[1060px] mx-auto mt-14">
