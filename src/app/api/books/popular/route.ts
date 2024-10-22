@@ -5,7 +5,7 @@ import { authOptions } from '@/libs/auth-options';
 
 export async function GET() {
   const session = await getServerSession(authOptions)
-    const userId = session?.user?.id ?? ''
+  const userId = session?.user?.id ?? ''
 
   try {
     const popularBooks = await prisma.book.findMany({
