@@ -8,6 +8,7 @@ import type { ReactNode } from "react";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { SessionProvider } from "next-auth/react";
 import { queryClient } from "@/libs/react-query";
+import type { Session } from "next-auth";
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -16,9 +17,10 @@ const nunito = Nunito({
 
 type RootLayoutProps = {
   children: ReactNode;
+  session: Session | null
 };
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children, session }: RootLayoutProps) {
   return (
     <html lang="pt-br">
       <head>
@@ -26,7 +28,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </head>
       <body className={nunito.className}>
         <QueryClientProvider client={queryClient}>
-          <SessionProvider>
+          <SessionProvider session={session}>
             <Toaster richColors />
             {children}
           </SessionProvider>
