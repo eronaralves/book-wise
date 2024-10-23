@@ -1,3 +1,5 @@
+'use client'
+
 import "./globals.css";
 import { Nunito } from "next/font/google";
 import { Toaster } from "sonner";
@@ -11,7 +13,7 @@ const nunito = Nunito({
 });
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
