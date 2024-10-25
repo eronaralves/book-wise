@@ -63,27 +63,26 @@ export async function GET(req: Request, { params }: { params: { userId: string }
         categoryId: true,
       },
     });
-
-    const mostRated = ratedCategories?.length > 0 ? ratedCategories?.sort((a, b) => b._count.categoryId - a._count.categoryId)[0].categoryId : ""
+    
+    const mostRated = ratedCategories.sort((a, b) => b._count.categoryId - a._count.categoryId)[0];
     
     const categoryDetails = await prisma.category.findUnique({
       where: {
-        id: mostRated,
+        id: ratedCategories.length > 0 ? mostRated.categoryId : '',
       },
       select: {
         name: true,
       },
     });
-
-
+    
     const detailsUser = {
       ...user,
       booksEvaluated: booksEvaluated.length,
       authorsRead: authorsRead.length,
-      mostReadCategory: categoryDetails
-    }
+      mostReadCategory: categoryDetails ? categoryDetails.name : null,
+    };
     
-    return NextResponse.json(detailsUser, { status: 201 });
+    return NextResponse.json(detailsUser, { status: 201 });    
 
   } catch(error) {
     console.error(error)

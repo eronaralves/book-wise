@@ -52,7 +52,7 @@ export function DetailsProfile({ userId }: DetailsProfile) {
             <div className="w-full max-w-[200px] mx-auto flex items-end gap-4">
               <BookOpen size={32} className="text-green-100" />
               <div className="flex flex-col">
-                <span className="font-bold text-base">{user?._count.ratings}</span>
+                <span className="font-bold text-base">{user?._count?.ratings}</span>
                 <span className="text-gray-300 text-sm">Livros avaliados</span>
               </div>
             </div>
