@@ -13,7 +13,7 @@ import { RatingStars } from "./rating-stars";
 import { Textarea } from "./ui/textarea";
 
 // Icons
-import { X, Check } from "lucide-react"
+import { X, Check, Loader2 } from "lucide-react"
 
 // Hooks
 import { useContextSession } from "@/hooks/useContextSession";
@@ -47,21 +47,23 @@ export function FormNewRating({ onClose, bookId }: IFormNewRating) {
     resolver: zodResolver(formSchema),
   })
 
-  const { mutateAsync } = useMutation({
+  const { mutateAsync, isPending } = useMutation({
     mutationFn: createRatings,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         queryKey: ["get-book", bookId]
-      });
-      await queryClient.invalidateQueries({
-        queryKey: ["recent-ratings"]
-      });
-      await queryClient.invalidateQueries({
-        queryKey: ["get-books"]
       });
 
       await queryClient.invalidateQueries({
         queryKey: ["popular-books"]
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["get-books"]
+      });
+      
+      await queryClient.invalidateQueries({
+        queryKey: ["recent-ratings"]
       });
     }
   })
@@ -123,11 +125,15 @@ export function FormNewRating({ onClose, bookId }: IFormNewRating) {
       </div>
 
       <div className="w-full flex justify-end gap-3 mt-2">
-        <button onClick={onClose} className="flex items-center justify-center rounded p-2 bg-gray-600">
+        <button onClick={onClose} disabled={isPending} className={`flex items-center justify-center rounded p-2 bg-gray-600 ${isPending && 'cursor-not-allowed'}`}>
           <X size={25} className="text-purple-100" />
         </button>
-        <button type="submit" className="flex items-center justify-center rounded p-2 bg-gray-600">
-          <Check size={25} className="text-green-100" />
+        <button type="submit" disabled={isPending} className={`flex items-center justify-center rounded p-2 bg-gray-600 ${isPending && 'cursor-not-allowed'}`}>
+          {isPending ? (
+            <Loader2 size={20} className="animate-spin" />
+          ) : (
+            <Check size={25} className="text-green-100" />
+          )}
         </button>
       </div>
     </form>
