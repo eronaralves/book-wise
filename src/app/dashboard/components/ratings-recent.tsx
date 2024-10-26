@@ -14,6 +14,7 @@ export function RatingsRecent() {
     queryKey: ['recent-ratings'],
     queryFn: getRecentsRatings,
     staleTime: 0,
+    refetchOnWindowFocus: true
   }) 
 
   return (
