@@ -16,6 +16,7 @@ export function BooksPopular() {
   const { data: popularBooks, isFetching } = useQuery({
     queryKey: ['popular-books'],
     queryFn: getPopularBooks,
+    staleTime: 0,
   }) 
 
   return (

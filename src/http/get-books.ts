@@ -22,7 +22,7 @@ export async function getBooks(category?: string, search?: string) {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
     });
 
     if (!response.ok) {
