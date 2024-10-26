@@ -15,7 +15,8 @@ import { PopularBookCardSkeleton } from "@/components/popular-book-card-skeleton
 export function BooksPopular() {
   const { data: popularBooks, isFetching } = useQuery({
     queryKey: ['popular-books'],
-    queryFn: getPopularBooks
+    queryFn: getPopularBooks,
+    staleTime: 0,
   }) 
 
   return (
