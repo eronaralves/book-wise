@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { toast } from "sonner";
-import { useMutation, useQueryClient, type InvalidateQueryFilters } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { z } from "zod"
 import { Controller, useForm } from "react-hook-form"
@@ -50,23 +50,28 @@ export function FormNewRating({ onClose, bookId }: IFormNewRating) {
   const { mutateAsync } = useMutation({
     mutationFn: createRatings,
     onSuccess: async () => {
-      queryClient.invalidateQueries(["get-book", bookId] as InvalidateQueryFilters);
-      queryClient.invalidateQueries(["recent-ratings"] as InvalidateQueryFilters);
+      await queryClient.invalidateQueries({
+        queryKey: ["get-book", bookId]
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ["recent-ratings"]
+      });
     }
   })
 
-  function onSubmit(data: FormNewRating) {
+  async function onSubmit(data: FormNewRating) {
     const { description, rate } = data
 
     if(user) {
       try {
-        mutateAsync({
+        await mutateAsync({
           description,
           rate,
           bookId,
           userId: user?.id
         });
 
+        await queryClient.invalidateQueries({ queryKey: ["recent-ratings"] });
         onClose(); 
         toast.success('Avaliação feita com sucesso!')
       } catch (error) {
