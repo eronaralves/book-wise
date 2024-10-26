@@ -51,7 +51,6 @@ export function FormNewRating({ onClose, bookId }: IFormNewRating) {
     mutationFn: createRatings,
     onSuccess: async () => {
       queryClient.invalidateQueries(["get-book", bookId] as InvalidateQueryFilters);
-      queryClient.invalidateQueries(["recent-ratings"] as InvalidateQueryFilters);
     }
   })
 
