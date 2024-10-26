@@ -32,7 +32,8 @@ export async function GET() {
       take: 10
     });
 
-    return NextResponse.json(ratings, { status: 200 });
+    const response = NextResponse.json(ratings);
+    response.headers.set('Cache-Control', 'no-store');
   } catch (error) {
     console.error(error);
     return NextResponse.json({
