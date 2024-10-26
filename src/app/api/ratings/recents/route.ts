@@ -4,7 +4,11 @@ import { prisma } from "@/libs/prisma";
 export async function GET() {
   try {
     const ratings = await prisma.rating.findMany({
-      include: {
+      select: {
+        created_at: true,
+        description: true,
+        rate: true,
+        id: true,
         user: {
           select: {
             id: true,
