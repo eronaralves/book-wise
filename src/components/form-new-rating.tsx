@@ -71,7 +71,6 @@ export function FormNewRating({ onClose, bookId }: IFormNewRating) {
           userId: user?.id
         });
 
-        await queryClient.invalidateQueries({ queryKey: ["recent-ratings"] });
         onClose(); 
         toast.success('Avaliação feita com sucesso!')
       } catch (error) {
