@@ -25,7 +25,10 @@ export function RatingStars({
     <div style={{ display: 'flex' }}>
       {Array.from({ length: count }, (_, index) => {
         const starValue = index + 1;
-        const isFilled = starValue <= (hoveredRating || value);
+        
+        // Determina se a estrela está totalmente preenchida ou meia preenchida
+        const isFilled = starValue <= Math.floor(hoveredRating || value);
+        const isHalfFilled = !edit && !isFilled && starValue - 0.5 <= value;
 
         return (
           <svg
@@ -38,13 +41,27 @@ export function RatingStars({
             height={size}
             viewBox="0 0 24 24"
             style={{
-              fill: isFilled ? color_filled : 'none',
               cursor: edit ? 'pointer' : 'default',
-              stroke: isFilled ? 'none' : color_filled,
-              strokeWidth: 1
             }}
           >
-            <polygon points="12 2 15 8 22 9 17 14 18 21 12 17 6 21 7 14 2 9 9 8" />
+            <defs>
+              <linearGradient id={`half-filled-${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="50%" style={{ stopColor: color_filled, stopOpacity: 1 }} />
+                <stop offset="50%" style={{ stopColor: 'none', stopOpacity: 1 }} />
+              </linearGradient>
+            </defs>
+            <polygon
+              points="12 2 15 8 22 9 17 14 18 21 12 17 6 21 7 14 2 9 9 8"
+              fill={
+                isFilled
+                  ? color_filled
+                  : isHalfFilled
+                  ? `url(#half-filled-${index})`
+                  : 'none'
+              }
+              stroke={color_filled}
+              strokeWidth={1}
+            />
           </svg>
         );
       })}

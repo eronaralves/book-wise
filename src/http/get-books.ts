@@ -23,9 +23,6 @@ export async function getBooks(category?: string, search?: string) {
       headers: {
         'Content-Type': 'application/json',
       },
-      next: {
-        tags: ['get-books']
-      }
     });
 
     if (!response.ok) {
