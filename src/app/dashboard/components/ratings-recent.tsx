@@ -16,10 +16,6 @@ export function RatingsRecent() {
     staleTime: 0,
   }) 
 
-  // if(!ratings && !isFetching) {
-  //   return null
-  // }
-
   return (
     <div className="h-full flex flex-col">
       <div className="flex flex-col flex-1 w-full">
