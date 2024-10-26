@@ -12,11 +12,7 @@ export type GetRatingPerBookResponse = {
 
 export async function getRatingPerBook(bookId: string) {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ratings/book/${bookId}`, {
-      next: {
-        tags: [`ratings-per-book:${bookId}`]
-      }
-    });
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ratings/book/${bookId}`);
 
     if (!response.ok) {
       throw new Error('Failed to fetch ratings for the book');

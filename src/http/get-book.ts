@@ -33,9 +33,6 @@ export async function getBook(bookId: string) {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-      },
-      next: {
-        tags: ['get-book']
       }
     });
 

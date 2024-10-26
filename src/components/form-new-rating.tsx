@@ -56,6 +56,13 @@ export function FormNewRating({ onClose, bookId }: IFormNewRating) {
       await queryClient.invalidateQueries({
         queryKey: ["recent-ratings"]
       });
+      await queryClient.invalidateQueries({
+        queryKey: ["get-books"]
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["popular-books"]
+      });
     }
   })
 
