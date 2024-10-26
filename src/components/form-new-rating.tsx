@@ -50,18 +50,22 @@ export function FormNewRating({ onClose, bookId }: IFormNewRating) {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: createRatings,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         queryKey: ["get-book", bookId]
       });
-      await queryClient.invalidateQueries({
+
+      queryClient.invalidateQueries({
         queryKey: ["recent-ratings"]
       });
-      await queryClient.invalidateQueries({
-        queryKey: ["get-books"]
-      });
-      await queryClient.invalidateQueries({
+      
+      queryClient.invalidateQueries({
         queryKey: ["popular-books"]
       });
+
+      queryClient.invalidateQueries({
+        queryKey: ["get-books"]
+      });
+      
     }
   })
 
