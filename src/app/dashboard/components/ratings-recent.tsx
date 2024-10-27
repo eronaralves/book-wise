@@ -13,6 +13,8 @@ export function RatingsRecent() {
   const { data: ratings, isFetching } = useQuery({
     queryKey: ['recent-ratings'],
     queryFn: getRecentsRatings,
+    staleTime: 0,
+    refetchOnWindowFocus: true
   }) 
 
   return (
