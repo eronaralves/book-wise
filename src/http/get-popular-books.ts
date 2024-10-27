@@ -23,6 +23,9 @@ export async function getPopularBooks() {
       headers: {
         'Content-Type': 'application/json',
       },
+      next: {
+        revalidate: 0
+      }
     });
 
     if (!response.ok) {
