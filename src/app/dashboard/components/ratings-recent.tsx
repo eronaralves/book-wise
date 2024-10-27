@@ -12,7 +12,8 @@ import { getRecentsRatings } from "@/http/get-recents-ratings";
 export function RatingsRecent() {
   const { data: ratings, isFetching } = useQuery({
     queryKey: ['recent-ratings'],
-    queryFn: getRecentsRatings
+    queryFn: getRecentsRatings,
+    staleTime: 5000
   }) 
 
   return (

@@ -53,7 +53,7 @@ export function DetailsProfile({ userId }: DetailsProfile) {
               <BookOpen size={32} className="text-green-100" />
               <div className="flex flex-col">
                 <span className="font-bold text-base">{user?._count?.ratings}</span>
-                <span className="text-gray-300 text-sm">Livros avaliados</span>
+                <span className="text-gray-300 text-sm">Totais de avaliações</span>
               </div>
             </div>
 

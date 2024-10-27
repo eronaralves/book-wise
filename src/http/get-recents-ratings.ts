@@ -25,9 +25,6 @@ export async function getRecentsRatings() {
       headers: {
         'Content-Type': 'application/json',
       },
-      next: {
-        revalidate: 0
-      }
     });
 
     if (!response.ok) {
