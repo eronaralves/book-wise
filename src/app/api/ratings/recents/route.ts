@@ -32,11 +32,15 @@ export async function GET() {
       take: 10
     });
 
-    return NextResponse.json(ratings, { status: 200 });
+    return NextResponse.json(ratings, {
+      status: 200,
+    });
   } catch (error) {
     console.error(error);
     return NextResponse.json({
       message: 'Erro ao buscar os livros mais recentes'
-    }, { status: 400 });
+    }, {
+      status: 400,
+    });
   }
 }
