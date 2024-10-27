@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { toast } from "sonner";
-import { useMutation, useQueryClient, type InvalidateQueryFilters } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { z } from "zod"
 import { Controller, useForm } from "react-hook-form"
@@ -53,8 +53,6 @@ export function FormNewRating({ onClose, bookId }: IFormNewRating) {
       await queryClient.invalidateQueries({
         queryKey: ["get-book", bookId]
       });
-
-      await queryClient.invalidateQueries(["recent-ratings"] as InvalidateQueryFilters);
     }
   })
 
