@@ -26,7 +26,6 @@ export function RatingStars({
       {Array.from({ length: count }, (_, index) => {
         const starValue = index + 1;
         
-        // Determina se a estrela está totalmente preenchida ou meia preenchida
         const isFilled = starValue <= Math.floor(hoveredRating || value);
         const isHalfFilled = !edit && !isFilled && starValue - 0.5 <= value;
 
