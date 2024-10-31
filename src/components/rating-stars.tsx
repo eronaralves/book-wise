@@ -46,7 +46,7 @@ export function RatingStars({
             <defs>
               <linearGradient id={`half-filled-${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="50%" style={{ stopColor: color_filled, stopOpacity: 1 }} />
-                <stop offset="50%" style={{ stopColor: 'none', stopOpacity: 1 }} />
+                <stop offset="50%" style={{ stopColor: 'transparent', stopOpacity: 1 }} />
               </linearGradient>
             </defs>
             <polygon
