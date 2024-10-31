@@ -13,8 +13,7 @@ export type GetRatingPerBookResponse = {
 
 export async function getRatingPerUser(userId: string, searchBook?: string) {
   try {
-    const query = searchBook ? `?search=${encodeURIComponent(searchBook)}` : '';
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ratings/user/${userId}${query}`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ratings/user/${userId}?search=${searchBook}`);
 
     if (!response.ok) {
       throw new Error('Failed to fetch ratings for the user');

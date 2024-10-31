@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 interface ICategoryButton {
   category: {
     name: string;
-    slug: string;
+    slug: string | null;
   },
 }
 
@@ -13,12 +13,16 @@ export function CategoryButton({ category }: ICategoryButton) {
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  const categorySearch = searchParams.get('category') ?? 'all'
+  const categorySearch = searchParams.get('category')
 
   function setSearchParams () {
     const searchParams = new URLSearchParams(window.location.search);
     
-    searchParams.set('category', category.slug);
+    if(category.slug) {
+      searchParams.set('category', category.slug);
+    } else {
+      searchParams.delete('category');
+    }
 
     router.push(`${window.location.pathname}?${searchParams.toString()}`);
   };

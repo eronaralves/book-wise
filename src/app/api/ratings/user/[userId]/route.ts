@@ -5,23 +5,20 @@ export async function GET(req: NextRequest, { params }: { params: { userId: stri
   try {
     const { userId } =  params
     const searchParams = req.nextUrl.searchParams;
-    const searchBook = searchParams.get('search') ?? ''
-
-    const whereCondition = searchBook && searchBook !== ''
-      ? {
-        user_id: userId,
-        book: {
-          name: {
-            contains: searchBook
-          }
-        }
-      }
-    : {
-      user_id: userId,
-    };
+    const searchBook = searchParams.get('search')
     
     const ratingsPerUser = await prisma.rating.findMany({
-      where: whereCondition,
+      where: {
+        user_id: userId,
+        book: searchBook && searchBook !== "undefined" ? 
+          {
+            name: {
+              contains: searchBook,
+              mode: "insensitive"
+            }
+          }
+        : undefined
+      },
       select: {
         created_at: true,
         description: true,

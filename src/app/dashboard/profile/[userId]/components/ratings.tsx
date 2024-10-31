@@ -51,7 +51,7 @@ export function Ratings({ bookSearch, userId }: IRatings) {
       <form onSubmit={(e) => handleFilter(e)} className="w-full h-full flex flex-col flex-1">
         <Input>
           <Input.Field placeholder="Buscar livro avaliado" value={searchBook} onChange={(e) => setSearchBook(e.target.value)} />
-          <Input.IconRight >
+          <Input.IconRight>
             <button type="submit">
               <Search size={20} className="text-gray-500" />
             </button>

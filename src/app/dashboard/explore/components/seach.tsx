@@ -33,7 +33,9 @@ export function SearchInput() {
       <Input>
         <Input.Field placeholder="Buscar livro ou autor" onChange={(e) => onChangeSearch(e.target.value)} />
         <Input.IconRight>
-          <Search size={20} className="text-gray-500" />
+          <button type="submit">
+            <Search size={20} className="text-gray-500" />
+          </button>
         </Input.IconRight>
       </Input>
     </form>

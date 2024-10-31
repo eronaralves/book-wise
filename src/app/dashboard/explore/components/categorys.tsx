@@ -27,7 +27,7 @@ export function Categorys() {
           <CategoryButton 
             category={{
               name: 'Tudo',
-              slug: 'all'
+              slug: null
             }}
           />
           {categorys.map(category => (

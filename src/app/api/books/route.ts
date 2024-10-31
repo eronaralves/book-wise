@@ -12,41 +12,27 @@ export async function GET(req: NextRequest) {
     const categorySlug = searchParams.get('category')
     const search = searchParams.get('search')
 
-    let whereCondition = {}
-
-    if(categorySlug !== "all" && categorySlug !== 'undefined') {
-      whereCondition = {
-        ...whereCondition,
-        categories: {
-          some: {
-            category: {
-              slug: categorySlug
-            }
-          }
-        },
-      }
-    }
-
-    if(search !== "undefined") {
-      whereCondition = {
-        ...whereCondition,
-        OR: [
+    const books = await prisma.book.findMany({
+      where: {
+        categories: categorySlug && categorySlug !== "undefined" ?
           {
-            name: {
-              contains: search
+            some: {
+              category: {
+                slug: categorySlug
+              }
             }
+          } 
+        : undefined,
+        OR: search && search !== "undefined" ? [
+          {
+            name: { contains: search, mode: 'insensitive' },
           },
           {
-            author: {
-              contains: search
-            }
+            author: { contains: search, mode: 'insensitive' }
           }
-        ]
-      }
-    }
-
-    const books = await prisma.book.findMany({
-      where: whereCondition,
+        ] 
+        : undefined
+      },
       select: {
         author: true,
         id: true,
